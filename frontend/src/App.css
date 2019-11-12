@@ -33,6 +33,7 @@
 
 .coffees {
   display: flex;
+  flex-flow: wrap;
 }
 
 .rating {

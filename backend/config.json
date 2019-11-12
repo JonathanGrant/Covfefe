@@ -2,7 +2,7 @@
     "coffees": [
         {
             "name": "Hazelino",
-            "img": "www.nespresso.com/shared_res/mos/free_html/fr/mosaic-responsive-fr/images/coffee/Hazelino-pdp-enh.png",
+            "img": "https://www.nespresso.com/shared_res/mos/free_html/fr/mosaic-responsive-fr/images/coffee/Hazelino-pdp-enh.png",
             "size": "Large",
             "caffeine": 6
         },
