@@ -1,12 +1,31 @@
 import React from 'react';
 import './App.css';
 
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Rating extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {score: 3};
+  }
+
+  mouseOver(e) {
+    let newScore = parseInt(e.target.id);
+    if (isNaN(newScore)) {
+      return null;
+    }
+    this.setState({score: newScore})
+  }
+
   render() {
     return (
-      <div className="rating">
-        <button class="btn"><i class="fa fa-home"></i></button>
+      <div className="rating" onMouseOver={(e) => this.mouseOver(e)}>
+        <FontAwesomeIcon icon={faStar} id="1" style={{color: this.state.score >= 1 ? "black" : "gray"}} />
+        <FontAwesomeIcon icon={faStar} id="2" style={{color: this.state.score >= 2 ? "black" : "gray"}} />
+        <FontAwesomeIcon icon={faStar} id="3" style={{color: this.state.score >= 3 ? "black" : "gray"}} />
+        <FontAwesomeIcon icon={faStar} id="4" style={{color: this.state.score >= 4 ? "black" : "gray"}} />
+        <FontAwesomeIcon icon={faStar} id="5" style={{color: this.state.score >= 5 ? "black" : "gray"}} />
       </div>
     )
   }
@@ -19,6 +38,7 @@ class Coffee extends React.Component {
       <div class="coffee">
         <img src={this.props.img} className="coffeeImg" />
         <div class="coffeeName">{this.props.name}</div>
+        <Rating />
       </div>
     );
   }

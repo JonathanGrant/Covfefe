@@ -34,3 +34,8 @@
 .coffees {
   display: flex;
 }
+
+.rating {
+  color: gray;
+}
+
