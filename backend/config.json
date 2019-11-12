@@ -2,7 +2,7 @@
     "coffees": [
         {
             "name": "Hazelino",
-            "img": ://www.nespresso.com/shared_res/mos/free_html/fr/mosaic-responsive-fr/images/coffee/Hazelino-pdp-enh.png",
+            "img": "www.nespresso.com/shared_res/mos/free_html/fr/mosaic-responsive-fr/images/coffee/Hazelino-pdp-enh.png",
             "size": "Large",
             "caffeine": 6
         },
@@ -14,13 +14,13 @@
         },
         {
             "name": "Elvazio",
-            "img": "",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWP2uM8EYmqdKTBX2tq-7nXiOuADsH-inDJZ80peY8Ap33dw2kHg&s",
             "size": "Large",
             "caffeine": 4
         },
         {
             "name": "Caramelizo",
-            "img": "",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdmiGaPwN1cUBDScyzE5RnsyhEiifrlbhRhLh-CFBqXWN_tTblUg&s",
             "size": "Large",
             "caffeine": 6
         }

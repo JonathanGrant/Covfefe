@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import json
 from collections import defaultdict
 from flask import Flask, request, jsonify, render_template
 
@@ -7,11 +8,12 @@ FRONTEND_DIR = os.path.join(os.path.dirname(os.getcwd()), "frontend/build")
 app = Flask(__name__, static_folder=os.path.join(FRONTEND_DIR, "static"), template_folder=FRONTEND_DIR)
 
 DB_FILE = os.path.abspath("data.db")
-FLAVORS = [
-    "Elvazio",
-    "etc"
-]
+CONFIG_FILE = os.path.join(os.getcwd(), "config.json")
 
+# Load config
+CONFIG = {}
+with open(CONFIG_FILE) as f:
+    CONFIG = json.load(f)
 
 @app.route("/")
 def hello():
@@ -42,10 +44,10 @@ def vote():
     return jsonify({"status": "Success!"})
 
 
-@app.route("/flavors")
+@app.route("/config")
 def get_flavors():
-    """Return all flavors for ratings."""
-    return jsonify(FLAVORS)
+    """Return all data for frontend."""
+    return jsonify(CONFIG)
 
 
 @app.route("/ratings")
