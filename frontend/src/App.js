@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { Modal, Button } from "react-bootstrap";
+
+
+class RatingModal extends React.Component {
+  render() {
+    console.log(this.props)
+    return (
+      <Modal show={this.props.showModal} onHide={this.props.closeModal}>
+        <Modal.Header closeButton>
+            <Modal.Title>Rate {this.props.name}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.props.closeModal}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.props.closeModal}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+      </Modal>
+    )
+  }
+}
+
+
 class Rating extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {score: 3};
+    this.state = {score: 3, showModal: false};
   }
 
   mouseOver(e) {
@@ -18,14 +44,21 @@ class Rating extends React.Component {
     this.setState({score: newScore})
   }
 
+  changeModal(e, showState) {
+    this.setState({showModal: showState})
+  }
+
   render() {
     return (
-      <div className="rating" onMouseOver={(e) => this.mouseOver(e)}>
-        <FontAwesomeIcon icon={faStar} id="1" style={{color: this.state.score >= 1 ? "black" : "gray"}} />
-        <FontAwesomeIcon icon={faStar} id="2" style={{color: this.state.score >= 2 ? "black" : "gray"}} />
-        <FontAwesomeIcon icon={faStar} id="3" style={{color: this.state.score >= 3 ? "black" : "gray"}} />
-        <FontAwesomeIcon icon={faStar} id="4" style={{color: this.state.score >= 4 ? "black" : "gray"}} />
-        <FontAwesomeIcon icon={faStar} id="5" style={{color: this.state.score >= 5 ? "black" : "gray"}} />
+      <div>
+        <div className="rating" onClick={(e) => this.changeModal(e, true)}  onMouseOver={(e) => this.mouseOver(e)}>
+          <FontAwesomeIcon icon={faStar} id="1" style={{color: this.state.score >= 1 ? "black" : "gray"}} />
+          <FontAwesomeIcon icon={faStar} id="2" style={{color: this.state.score >= 2 ? "black" : "gray"}} />
+          <FontAwesomeIcon icon={faStar} id="3" style={{color: this.state.score >= 3 ? "black" : "gray"}} />
+          <FontAwesomeIcon icon={faStar} id="4" style={{color: this.state.score >= 4 ? "black" : "gray"}} />
+          <FontAwesomeIcon icon={faStar} id="5" style={{color: this.state.score >= 5 ? "black" : "gray"}} />
+        </div>
+        <RatingModal name={this.props.name} showModal={this.state.showModal} closeModal={(e) => this.changeModal(e, false)} />
       </div>
     )
   }
@@ -38,7 +71,7 @@ class Coffee extends React.Component {
       <div class="coffee">
         <img src={this.props.img} className="coffeeImg" />
         <div class="coffeeName">{this.props.name}</div>
-        <Rating />
+        <Rating name={this.props.name} />
       </div>
     );
   }
