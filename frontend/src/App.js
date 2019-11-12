@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-
+import axios from 'axios';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Modal, Button } from "react-bootstrap";
 
 
@@ -84,9 +83,9 @@ class Coffee extends React.Component {
   render() {
     return (
       <div class="coffee">
-        <img src={this.props.img} className="coffeeImg" alt="ALTERNATIVE FAX" />
-        <div class="coffeeName">{this.props.name}</div>
-        <Rating name={this.props.name} />
+        <img src={this.props.data.img} className="coffeeImg" alt="ALTERNATIVE FAX" />
+        <div class="coffeeName">{this.props.data.name}</div>
+        <Rating name={this.props.data.name} />
       </div>
     );
   }
@@ -96,26 +95,25 @@ class Coffee extends React.Component {
 class CoffeesHolder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { flavors: null };
+    this.state = { data: null };
   }
 
   componentDidMount() {
-    // Load coffee flavors from backend
-    this.setState({flavors: [
-      {name: "one", img: "https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG"},
-      {name: "two", img: "https://specials-images.forbesimg.com/imageserve/1152308114/960x0.jpg?fit=scale"},
-      {name: "three", img: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1072007868%2F960x0.jpg%3Ffit%3Dscale"}
-    ]})
+    // Load config from backend
+    axios.get('/config').then(response => {
+      console.log(response);
+      this.setState({data: response.data})
+    });
   }
 
   render() {
-    if (!this.state.flavors) {
+    if (!this.state.data) {
       return (<div>Loading...</div>)
     }
 
     let coffeeDivs = [];
-    for (let i = 0; i < this.state.flavors.length; i++) {
-      coffeeDivs.push(<Coffee name={this.state.flavors[i].name} img={this.state.flavors[i].img} />)
+    for (let i = 0; i < this.state.data.coffees.length; i++) {
+      coffeeDivs.push(<Coffee data={this.state.data.coffees[i]} />)
     }
 
     return (<div className="coffees">{coffeeDivs}</div>)
