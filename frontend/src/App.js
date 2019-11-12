@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -21,10 +21,9 @@ class RatingModal extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Modal show={this.props.showModal} onHide={this.props.closeModal}>
-        {this.state.saveStatus == "sending" ? <Modal show={true}><h1>Sending...</h1></Modal> : null}
+        {this.state.saveStatus === "sending" ? <Modal show={true}><h1>Sending...</h1></Modal> : null}
         <Modal.Header closeButton>
             <Modal.Title>Rate {this.props.name}</Modal.Title>
           </Modal.Header>
@@ -85,7 +84,7 @@ class Coffee extends React.Component {
   render() {
     return (
       <div class="coffee">
-        <img src={this.props.img} className="coffeeImg" />
+        <img src={this.props.img} className="coffeeImg" alt="ALTERNATIVE FAX" />
         <div class="coffeeName">{this.props.name}</div>
         <Rating name={this.props.name} />
       </div>
