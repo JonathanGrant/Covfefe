@@ -8,19 +8,35 @@ import { Modal, Button } from "react-bootstrap";
 
 
 class RatingModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {note: "", saveStatus: "notsent"};
+  }
+
+  saveRating(e) {
+    // Send rating to backend with note and score.
+    console.log("Saving rating of " + this.props.score + " for coffee " + this.props.name + " with note " + this.state.note + ".");
+    this.setState({saveStatus: "sending"})
+    setTimeout(() => {this.props.closeModal(null)}, 1000);
+  }
+
   render() {
-    console.log(this.props)
+    console.log(this.state)
     return (
       <Modal show={this.props.showModal} onHide={this.props.closeModal}>
+        {this.state.saveStatus == "sending" ? <Modal show={true}>Sending...</Modal> : null}
         <Modal.Header closeButton>
             <Modal.Title>Rate {this.props.name}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+            <h5>Give {this.props.name} a score of {this.props.score} out of 5?</h5>
+            <div><input type="text" value={this.state.note} onChange={(e) => this.setState({note: e.target.value})} placeholder="Enter an optional note..." /></div>
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.props.closeModal}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.props.closeModal}>
+            <Button variant="primary" onClick={(e) => this.saveRating(e)}>
               Save Changes
             </Button>
           </Modal.Footer>
