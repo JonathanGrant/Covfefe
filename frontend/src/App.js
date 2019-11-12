@@ -10,7 +10,7 @@ import { Modal, Button } from "react-bootstrap";
 class RatingModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {note: "", saveStatus: "notsent"};
+    this.state = {note: "", sending: "notsent"};
   }
 
   saveRating(e) {
@@ -24,7 +24,7 @@ class RatingModal extends React.Component {
     console.log(this.state)
     return (
       <Modal show={this.props.showModal} onHide={this.props.closeModal}>
-        {this.state.saveStatus == "sending" ? <Modal show={true}>Sending...</Modal> : null}
+        {this.state.saveStatus == "sending" ? <Modal show={true}><h1>Sending...</h1></Modal> : null}
         <Modal.Header closeButton>
             <Modal.Title>Rate {this.props.name}</Modal.Title>
           </Modal.Header>
@@ -74,7 +74,7 @@ class Rating extends React.Component {
           <FontAwesomeIcon icon={faStar} id="4" style={{color: this.state.score >= 4 ? "black" : "gray"}} />
           <FontAwesomeIcon icon={faStar} id="5" style={{color: this.state.score >= 5 ? "black" : "gray"}} />
         </div>
-        <RatingModal name={this.props.name} showModal={this.state.showModal} closeModal={(e) => this.changeModal(e, false)} />
+        <RatingModal name={this.props.name} score={this.state.score} showModal={this.state.showModal} closeModal={(e) => this.changeModal(e, false)} />
       </div>
     )
   }
