@@ -38,10 +38,10 @@ class RatingModal extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.props.closeModal}>
-              Close
+              Cancel
             </Button>
             <Button variant="primary" onClick={(e) => this.saveRating(e)}>
-              Save Changes
+              Submit Rating
             </Button>
           </Modal.Footer>
       </Modal>

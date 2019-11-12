@@ -23,6 +23,12 @@
             "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdmiGaPwN1cUBDScyzE5RnsyhEiifrlbhRhLh-CFBqXWN_tTblUg&s",
             "size": "Large",
             "caffeine": 6
+        },
+        {
+            "name": "Stormio",
+            "img": "https://i5.walmartimages.com/asr/a790857b-c1dc-456e-9cfa-c5e97bfc2842_1.c54fa7d1c02b3d758697e5ce8aa7597a.jpeg",
+            "size": "Large",
+            "caffeine": 8
         }
     ]
 }
