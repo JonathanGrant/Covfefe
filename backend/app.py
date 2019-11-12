@@ -1,14 +1,21 @@
 import sqlite3
+import os
 from collections import defaultdict
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__)
+FRONTEND_DIR = os.path.join(os.path.dirname(os.getcwd()), "frontend/build")
+app = Flask(__name__, static_folder=os.path.join(FRONTEND_DIR, "static"), template_folder=FRONTEND_DIR)
 
-DB_FILE = "/home/jon/covfefe/backend/data.db"
+DB_FILE = os.path.abspath("data.db")
 FLAVORS = [
     "Elvazio",
     "etc"
 ]
+
+
+@app.route("/")
+def hello():
+    return render_template('index.html')
 
 
 @app.route('/vote', methods=["POST"])
@@ -22,6 +29,7 @@ def vote():
         :param str note: Note to add to rating (optional).
     """
     data = request.get_json(force=True)
+    print("Received {}".format(data))
     flavor, score, note = data["flavor"], data["score"], data.get("note", "")
     conn = sqlite3.connect(DB_FILE)
     command = "INSERT INTO ratings(flavor,score,note) VALUES(?,?,?)"

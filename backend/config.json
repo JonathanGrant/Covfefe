@@ -1,0 +1,28 @@
+{
+    "coffees": [
+        {
+            "name": "Hazelino",
+            "img": ://www.nespresso.com/shared_res/mos/free_html/fr/mosaic-responsive-fr/images/coffee/Hazelino-pdp-enh.png",
+            "size": "Large",
+            "caffeine": 6
+        },
+        {
+            "name": "Half Caffeinato",
+            "img": "https://s.cornershopapp.com/product-images/589963.png",
+            "size": "Large",
+            "caffeine": 4
+        },
+        {
+            "name": "Elvazio",
+            "img": "",
+            "size": "Large",
+            "caffeine": 4
+        },
+        {
+            "name": "Caramelizo",
+            "img": "",
+            "size": "Large",
+            "caffeine": 6
+        }
+    ]
+}
