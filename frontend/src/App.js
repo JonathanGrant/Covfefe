@@ -16,7 +16,13 @@ class RatingModal extends React.Component {
     // Send rating to backend with note and score.
     console.log("Saving rating of " + this.props.score + " for coffee " + this.props.name + " with note " + this.state.note + ".");
     this.setState({saveStatus: "sending"})
-    setTimeout(() => {this.props.closeModal(null)}, 1000);
+    axios.post('/vote', {
+      score: this.props.score,
+      flavor: this.props.name,
+      note: this.state.note
+    }).then(response => {
+      this.props.closeModal(null)
+    });
   }
 
   render() {

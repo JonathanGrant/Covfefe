@@ -64,7 +64,7 @@ def get_ratings():
     # Turn rows into dictionary where key is coffee name and values are ratings
     ratings = defaultdict(list)
     for row in all_rows:
-        ratings[row[0]].append({"score": row[1], "note": row[2]})
+        ratings[row[1]].append({"score": row[0], "note": row[2]})
 
     return jsonify(ratings)
 
