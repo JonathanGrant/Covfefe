@@ -36,6 +36,15 @@
   flex-flow: wrap;
 }
 
+.coffeeExtras {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.coffeeRating {
+  font-size: 12px;
+}
+
 .rating {
   color: gray;
 }

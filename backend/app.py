@@ -47,10 +47,25 @@ def vote():
 @app.route("/config")
 def get_flavors():
     """Return all data for frontend."""
+    # Get ratings and merge with config.
+    ratings = get_ratings()
+    for i, coffee in enumerate(CONFIG["coffees"]):
+        if coffee["name"] not in ratings:
+            CONFIG["coffees"][i]["ratings"] = []
+            CONFIG["coffees"][i]["avg-rating"] = None
+            continue
+        CONFIG["coffees"][i]["ratings"] = ratings[coffee["name"]]
+        avg = sum(rating["score"] for rating in ratings[coffee["name"]]) / len(ratings[coffee["name"]])
+        CONFIG["coffees"][i]["avg-rating"] = avg
     return jsonify(CONFIG)
 
 
 @app.route("/ratings")
+def ratings_api():
+    """Wrapper for get_ratings."""
+    return jsonify(get_ratings())
+
+
 def get_ratings():
     """Return all ratings in database. Frontend can handle averages, etc."""
     conn = sqlite3.connect(DB_FILE)
@@ -66,7 +81,7 @@ def get_ratings():
     for row in all_rows:
         ratings[row[1]].append({"score": row[0], "note": row[2]})
 
-    return jsonify(ratings)
+    return ratings
 
 
 if __name__ == '__main__':

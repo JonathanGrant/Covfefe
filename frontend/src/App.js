@@ -92,6 +92,9 @@ class Coffee extends React.Component {
         <img src={this.props.data.img} className="coffeeImg" alt="ALTERNATIVE FAX" />
         <div class="coffeeName">{this.props.data.name}</div>
         <Rating name={this.props.data.name} />
+        {this.props.data["avg-rating"] ? <div class="coffeeRating">Average Rating: {this.props.data["avg-rating"]}</div> : null}
+        <div class="coffeeRating">Caffeine: {this.props.data.caffeine}</div>
+        <div class="coffeeRating">{this.props.data.size}</div>
       </div>
     );
   }
@@ -101,7 +104,7 @@ class Coffee extends React.Component {
 class CoffeesHolder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: null };
+    this.state = { data: null, sorting: "name" };
   }
 
   componentDidMount() {
@@ -112,9 +115,20 @@ class CoffeesHolder extends React.Component {
     });
   }
 
+  sortCoffees(sortType) {
+    let coffees = this.state.data.coffees;
+    coffees.sort((a, b) => (a[sortType] > b[sortType]) ? 1 : -1);
+    this.setState({data: {coffees}, sorting: sortType});
+  }
+
   render() {
     if (!this.state.data) {
       return (<div>Loading...</div>)
+    }
+
+    let sortOptions = [];
+    for (var key in this.state.data.coffees[0]) {
+      sortOptions.push(<option value={key}>{key}</option>);
     }
 
     let coffeeDivs = [];
@@ -122,7 +136,14 @@ class CoffeesHolder extends React.Component {
       coffeeDivs.push(<Coffee data={this.state.data.coffees[i]} />)
     }
 
-    return (<div className="coffees">{coffeeDivs}</div>)
+    return (
+      <div>
+        <select onChange={(e) => this.sortCoffees(e.target.value)}>{sortOptions}</select>
+        <div className="coffees">
+          {coffeeDivs}
+        </div>
+      </div>
+    )
   }
 
 }
