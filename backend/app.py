@@ -49,6 +49,7 @@ def get_flavors():
     """Return all data for frontend."""
     # Get ratings and merge with config.
     ratings = get_ratings()
+    print("Got ratings: {}".format(ratings))
     for i, coffee in enumerate(CONFIG["coffees"]):
         if coffee["name"] not in ratings:
             CONFIG["coffees"][i]["ratings"] = []
@@ -57,6 +58,7 @@ def get_flavors():
         CONFIG["coffees"][i]["ratings"] = ratings[coffee["name"]]
         avg = sum(rating["score"] for rating in ratings[coffee["name"]]) / len(ratings[coffee["name"]])
         CONFIG["coffees"][i]["avg-rating"] = avg
+
     return jsonify(CONFIG)
 
 
