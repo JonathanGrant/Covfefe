@@ -117,7 +117,12 @@ class CoffeesHolder extends React.Component {
 
   sortCoffees(sortType) {
     let coffees = this.state.data.coffees;
-    coffees.sort((a, b) => (a[sortType] > b[sortType]) ? 1 : -1);
+    coffees.sort((a, b) => {
+      if (isNaN(a[sortType])) {
+        return (a[sortType] > b[sortType]) ? 1 : -1
+      }
+      return (a[sortType] > b[sortType]) ? -1 : 1
+    });
     this.setState({data: {coffees}, sorting: sortType});
   }
 
@@ -128,6 +133,9 @@ class CoffeesHolder extends React.Component {
 
     let sortOptions = [];
     for (var key in this.state.data.coffees[0]) {
+      if (key === "img") {
+        continue;
+      }
       sortOptions.push(<option value={key}>{key}</option>);
     }
 
