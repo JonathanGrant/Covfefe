@@ -10,7 +10,7 @@
             "name": "Half Caffeinato",
             "img": "https://s.cornershopapp.com/product-images/589963.png",
             "size": "Large",
-            "caffeine": 4
+            "caffeine": 5
         },
         {
             "name": "Elvazio",
@@ -29,6 +29,48 @@
             "img": "https://i5.walmartimages.com/asr/a790857b-c1dc-456e-9cfa-c5e97bfc2842_1.c54fa7d1c02b3d758697e5ce8aa7597a.jpeg",
             "size": "Large",
             "caffeine": 8
+        },
+        {
+            "name": "Odacio",
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkhhvg60jYh2oLqJSdq0l5wfrfqLAEcANMmA1gnZh7kTu-V2lFVQ&s",
+            "size": "Large",
+            "caffeine": 7
+        },
+        {
+            "name": "Vanizio",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/41g1S5ZAjwL._AC_SY400_.jpg",
+            "size": "Large",
+            "caffeine": 6
+        },
+        {
+            "name": "Melozio",
+            "img": "https://www.nespresso.com/ecom/medias/sys_master/public/10386860277790/C-0106-PDP-Background.jpg?impolicy=productPdpSafeZone&imwidth=1238",
+            "size": "Large",
+            "caffeine": 6
+        },
+        {
+            "name": "Diavolito",
+            "img": "https://www.nespresso.com/ecom/medias/sys_master/public/10386861654046/C-0114-PDP-Background.jpg?impolicy=productPdpSafeZone&imwidth=1238",
+            "size": "Small",
+            "caffeine": 11
+        },
+        {
+            "name": "Altissio",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/415yoZoTj7L.jpg",
+            "size": "Small",
+            "caffeine": 9
+        },
+        {
+            "name": "Zimbabwe",
+            "img": "http://foodology.ca/wp-content/uploads/2019/06/nespresso-reviving-origins-1-3-1-620x413.jpg",
+            "size": "Small",
+            "caffeine": 5
+        },
+        {
+            "name": "Voltesso",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/51C3pL82w8L.jpg",
+            "size": "Small",
+            "caffeine": 4
         }
     ]
 }
